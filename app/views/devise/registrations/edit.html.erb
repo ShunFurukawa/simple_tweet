@@ -1,10 +1,10 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<h2>登録情報編集 ユーザー名なん?今回は登録してない→<%= resource_name.to_s.humanize %></h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= devise_error_messages! %>
 
   <div class="field">
-    <%= f.label :email %><br />
+    <%= f.label :メールアドレス %><br />
     <%= f.email_field :email, autofocus: true %>
   </div>
 
@@ -12,22 +12,28 @@
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
 
+  </br>
+
   <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+    <%= f.label :パスワード %> <i>(変更したないんやったら、空欄のままでお願いな)</i><br />
     <%= f.password_field :password, autocomplete: "off" %>
     <% if @minimum_password_length %>
       <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
+      <em>パスワードは<%= @minimum_password_length %> 文字以上で設定してな</em>
     <% end %>
   </div>
 
+  </br>
+
   <div class="field">
-    <%= f.label :password_confirmation %><br />
+    <%= f.label :再度パスワードの確認やから、もっかい入れて %><br />
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
 
+  </br>
+
   <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+    <%= f.label :現在のパスワード %> <i>(これらの情報を変更したかったら、今の登録してるパスワード入力してや！)</i><br />
     <%= f.password_field :current_password, autocomplete: "off" %>
   </div>
 
@@ -36,8 +42,8 @@
   </div>
 <% end %>
 
-<h3>Cancel my account</h3>
+<h3>アカウントを削除するんやったら、こっち</h3>
 
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+<p>いや、ほんまにすんの? <%= button_to "アカウントを削除する", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
 
-<%= link_to "Back", :back %>
+<%= link_to "戻るで", :back %>
