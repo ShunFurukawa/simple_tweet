@@ -9,6 +9,18 @@
   </head>
 
   <body>
+    <heder>
+      <div>
+        <% if user_signed_in? %>
+          こんにちわ <%= current_user.email %> <%= link_to "サインアウト", destroy_user_session_path, method: :delete %>
+        <% else %>
+          <%= link_to "新規登録", new_user_registration_path %> または、
+          <%= link_to "既にアカウントをお持ちの方はこちら", new_user_session_path %>
+        <% end %>
+      </div>
+    </heder>
+
     <%= yield %>
+
   </body>
 </html>
