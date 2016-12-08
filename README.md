@@ -1,24 +1,88 @@
-# README
+#DB 設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+##users テーブル
+###culumn
+  - id :integer
+  - name :string
+  - email :string
 
-Things you may want to cover:
+###association
+  - has_many :tweets
+  - has_many :favorites
+  - has_many :groups, through :relation_group
+  - has_many :follows
 
-* Ruby version
 
-* System dependencies
+##tweets テーブル
+###culumn
+  - id :integer
+  - user_id :integer
+  - text :text
 
-* Configuration
+###association
+  - belongs_to :user
+  - has_many :tweet_images
+  - has_many :comments
+  - has_many :favorites
 
-* Database creation
 
-* Database initialization
+##tweet_images テーブル
+###culumn
+  - id :integer
+  - tweet_id :integer
+  - image :text
 
-* How to run the test suite
+###association
+  - belongs_to :tweet
 
-* Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
+##follows テーブル
+###culumn
+  - id :integer
+  - user_id :integer
+  - follow_id :integer
 
-* ...
+###association
+  - belongs_to :user
+
+
+##comments テーブル
+###culumn
+  - id :integer
+  - user_id :integer
+  - tweet_id :integer
+  - comment :text
+
+###association
+  - belongs_to :tweet
+
+
+##groups テーブル
+###culumn
+  - id :integer
+  - group_name :text
+
+###association
+  - has_many :user, through :relation_group
+
+
+##relation_group テーブル
+###culumn
+  - id :integer
+  - group_id :integer
+  - user_id :integer
+
+###association
+  - belongs_to :group
+  - belongs_to :user
+
+
+##favorites テーブル
+###culumn
+  - id :integer
+  - user_id :integer
+  - tweet_id :integer
+
+###association
+  - belongs_to :tweet
+
