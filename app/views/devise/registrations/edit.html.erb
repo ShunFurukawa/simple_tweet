@@ -1,0 +1,49 @@
+<h2>登録情報編集 ユーザー名なん?今回は登録してない→<%= resource_name.to_s.humanize %></h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div class="field">
+    <%= f.label :メールアドレス %><br />
+    <%= f.email_field :email, autofocus: true %>
+  </div>
+
+  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+  <% end %>
+
+  </br>
+
+  <div class="field">
+    <%= f.label :パスワード %> <i>(変更したないんやったら、空欄のままでお願いな)</i><br />
+    <%= f.password_field :password, autocomplete: "off" %>
+    <% if @minimum_password_length %>
+      <br />
+      <em>パスワードは<%= @minimum_password_length %> 文字以上で設定してな</em>
+    <% end %>
+  </div>
+
+  </br>
+
+  <div class="field">
+    <%= f.label :再度パスワードの確認やから、もっかい入れて %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+  </div>
+
+  </br>
+
+  <div class="field">
+    <%= f.label :現在のパスワード %> <i>(これらの情報を変更したかったら、今の登録してるパスワード入力してや！)</i><br />
+    <%= f.password_field :current_password, autocomplete: "off" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Update" %>
+  </div>
+<% end %>
+
+<h3>アカウントを削除するんやったら、こっち</h3>
+
+<p>いや、ほんまにすんの? <%= button_to "アカウントを削除する", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+
+<%= link_to "戻るで", :back %>
