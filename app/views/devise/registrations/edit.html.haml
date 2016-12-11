@@ -1,0 +1,40 @@
+%h2 登録情報編集
+
+= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+  = devise_error_messages!
+
+  .field
+    = f.label :メールアドレス
+    %br
+    = f.email_field :email, autofocus: true
+
+  - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+    %div Currently waiting confirmation for: #{resource.unconfirmed_email}
+
+  .field
+    = f.label :パスワード
+    %p 変更したくないなら、空欄のままで！
+    = f.password_field :password, autocomplete: "off"
+    - if @minimum_password_length
+      %p (パスワードは#{@minimum_password_length} 文字以上で設定してな)
+
+  .field
+    = f.label :再度パスワードの確認やから、もっかい入れて
+    %br
+    = f.password_field :password_confirmation, autocomplete: "off"
+
+  .field
+    = f.label :現在のパスワード
+    %p (これらの情報を変更したかったら、今の登録してるパスワード入力してや！)
+    = f.password_field :current_password, autocomplete: "off"
+
+  .actions
+    = f.submit "更新すんでー！"
+
+
+%h3 アカウントを削除するんやったら、こっち
+
+%p いや、ほんまにすんの? #{button_to "アカウントを削除する", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete}
+
+= link_to "戻るで", :back
+
