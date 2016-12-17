@@ -1,0 +1,20 @@
+<h3>あなたの フォロワー 一覧です!!!!</h3>
+
+<p>followされている相手を書き出していく。つまり、Relation テーブルから、follow_id カラムから、自分のuser.idを探す。(テーブル名.where)配列,変数(@users)で取り出す。後に、空の配列を創る。(@userss = []) 先程取り出した配列(@users)を、ハッシュにする(@users.each do |user|) ハッシュにしたら、変数(配列で)にぶち込む！！！</p>
+
+<% @userss.each do |user| %>
+  <table border= "1" width= "50%">
+    <tr>
+      <td>ID number</td>
+      <td>user info</td>
+      <td>more...</td>
+    </tr>
+
+    <tr>
+      <td>囚人番号 <%= user.id %></td>
+      <td><%= user.email %>さん</td>
+      <td><%= link_to "詳しく", user_path(user.id) %></td>
+    </tr>
+
+  </table>
+<% end %>

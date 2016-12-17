@@ -1,5 +1,15 @@
-%h1 Simple tweetでっせ
 
 %p 教えてもらいながら、作成しています。
 
-= link_to '登録情報変更したいなら、こっち!!', edit_user_registration_path
+%h1 こんにちは!! これは、Simple Tweet です。
+
+%div
+  -if user_signed_in?
+    = link_to "フォロー 一覧 ", relation_path(current_user.id)
+    %br
+    = link_to "フォロワー 一覧", 'relationed/:id'
+    %br
+    = link_to "Simple Tweet ユーザー 一覧", users_path
+  -else
+    %p 使いたいなら、ログインしなさいな。
+    %p simple tweetのユーザー一覧を見れたり、つぶやいたり、フォローしたりできまする。
