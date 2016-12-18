@@ -1,0 +1,23 @@
+<h3>あなたの フォロー 一覧 です</h3>
+
+<p>ここに、current_user(現在ログインしている人の情報)と、Relation テーブルの follow_id カラム を照らし合わせて(where)、そのレコード(配列)を持ってきて、each do でハッシュにする。followed_id を Userテーブル と照らし合わせて(find)、user を配列(変数)に突っ込む。( @users << ◯◯ )。後に、フォロー一覧で、配列を .each do。</p>
+
+<% @userss.each do |user| %>
+  <table border= "1" width= "50%">
+    <tr>
+      <td>ID number</td>
+      <td>user info</td>
+      <td>more...</td>
+    </tr>
+
+    <tr>
+      <td>囚人番号 <%= user.id %></td>
+      <td><%= user.email %>さん</td>
+      <td><%= link_to "詳しく", user_path(user.id) %></td>
+    </tr>
+
+  </table>
+<% end %>
+
+
+<%= link_to "戻るで", :back %>

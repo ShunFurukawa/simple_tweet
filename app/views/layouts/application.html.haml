@@ -12,8 +12,10 @@
       %h1 Simple Tweet
       %div
         - if user_signed_in?
-          こんにちは！ #{current_user.email}さん
+          %h2 こんにちは！ #{current_user.id}さん
           =link_to "サインアウトはこちら", destroy_user_session_path, method: :delete
+          %br
+          =link_to "マイページはこちら", user_path(current_user)
         - else
           =link_to "新規登録", new_user_registration_path
           または、
