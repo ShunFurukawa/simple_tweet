@@ -12,4 +12,6 @@ Rails.application.routes.draw do
   resources :relation
   get "relationed/:id" => "relation#showed"
 
+  resources :tweets
+
 end

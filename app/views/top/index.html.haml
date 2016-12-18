@@ -5,11 +5,11 @@
 
 %div
   -if user_signed_in?
-    = link_to "フォロー 一覧 ", relation_path(current_user.id)
-    %br
-    = link_to "フォロワー 一覧", 'relationed/:id'
-    %br
-    = link_to "Simple Tweet ユーザー 一覧", users_path
+    %p = link_to "つぶやく!!!!", new_tweet_path
+    %p = link_to "つぶやき 一覧", tweets_path
+    %p = link_to "フォロー 一覧 ", relation_path(current_user.id)
+    %p = link_to "フォロワー 一覧", 'relationed/:id'
+    %p = link_to "ユーザー 一覧", users_path
   -else
     %p 使いたいなら、ログインしなさいな。
     %p simple tweetのユーザー一覧を見れたり、つぶやいたり、フォローしたりできまする。
