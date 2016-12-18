@@ -6,7 +6,7 @@
   <% if Relation.find_by(followed_id: params[:id]) %>
     <%= form_for @relation, url:relation_path(current_user), :method => :delete do |f| %>
       <%= f.hidden_field :follow_id, :value => current_user.id %>
-      <%= f.hidden_field :follow_id, :value => @user.id %>
+      <%= f.hidden_field :followed_id, :value => @user.id %>
       <%= f.submit "フォローを外す" %>
     <% end %>
   <% else %>
@@ -18,9 +18,22 @@
   <% end %>
 <% end %>
 
-<%= link_to "フォロー 一覧", relation_path(current_user.id) %>
-<br>
-<%= link_to "フォロワー 一覧", '/relationed/:id' %>
-<br>
-<%= link_to "Simple Tweet ユーザー 一覧", users_path %>
+<p>
+  <%= link_to "つぶやく!!!!!!", new_tweet_path %>
+</p>
 
+<p>
+  <%= link_to "つぶやき一覧はこっち!", tweets_path %>
+</p>
+
+<P>
+  <%= link_to "フォロー 一覧", relation_path(current_user.id) %>
+</P>
+
+<p>
+  <%= link_to "フォロワー 一覧", '/relationed/:id' %>
+</p>
+
+<p>
+  <%= link_to "Simple Tweet ユーザー 一覧", users_path %>
+</p>
