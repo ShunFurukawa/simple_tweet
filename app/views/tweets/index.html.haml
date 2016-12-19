@@ -1,0 +1,18 @@
+%h1 全てのTweetです！
+%p
+  = link_to "つぶやく!!!!!!", new_tweet_path
+%table
+  %table{:border => "1"}
+    %tr
+      %th 投稿者
+      %th タイトル
+      %th 投稿内容
+      %th etc...
+    - @tweets.each do |tweet|
+      %tr
+        %td= tweet.user_id
+        %td= tweet.title
+        %td= tweet.text
+        %td= link_to "詳細へ", tweet_path(tweet.id)
+  %p
+    = link_to "戻るで", :back

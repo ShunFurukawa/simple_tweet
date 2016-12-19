@@ -1,0 +1,16 @@
+%h1 投稿の編集
+%p つぶやきを編集しまする!!!!
+= form_for :tweets, url: tweet_path, method: :patch do |f|
+  = f.hidden_field :user_id, :value => current_user.id.to_i
+  %p
+    = f.label :title, "つぶやきのタイトル"
+    %br/
+    = f.text_field :title
+  %p
+    = f.label :text, "つぶやきの本文"
+    %br/
+    = f.text_area :text, cols: 60, rows: 8
+  %p
+    = f.submit "ていせいっ!!!!!!!!!!!!!!!"
+%p
+  = link_to "戻るで", :back

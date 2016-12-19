@@ -1,0 +1,17 @@
+%h3 Simple Tweet ユーザー 一覧 です
+- @users.each do |user|
+  %table{:border => "1", :width => "50%"}
+    %tr
+      %td ID number
+      %td user info
+      %td more...
+    %tr
+      %td
+        囚人番号 #{user.id}
+      %td
+        = user.email
+        さん
+      %td= link_to "詳しく", user_path(user.id)
+= link_to "フォロー 一覧 ", relation_path(current_user.id)
+%br/
+= link_to "戻るで", :back

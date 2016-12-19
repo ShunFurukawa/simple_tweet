@@ -1,0 +1,17 @@
+%h3 あなたのフォロー一覧です！
+%p フォローしているユーザーを一覧表示する。つまり、現在ログインしているユーザー(current_user_id)と、Relationテーブルの follow_id カラムから探す(where)。それらのレコードを配列で取り出してきて、.each do || で、ハッシュにする。そのレコードの followed_idの情報を元に、Userテーブルから どのユーザーをフォローしているのか探す(find)。それらのレコードたちを、再度配列(変数)(@userss << )に入れる。それを viwe で.each do!!!!
+
+- @userss.each do |user|
+  %table{:border => "1", :width => "50%"}
+    %tr
+      %td
+        ID number
+      %td
+        user info
+      %td
+        more...
+    %tr
+      %td 囚人番号 #{user.id}
+      %td #{user.email}さん
+      %td= link_to "詳しく", user_path(user.id)
+= link_to "戻るで", :back

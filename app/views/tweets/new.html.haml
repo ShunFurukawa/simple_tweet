@@ -1,0 +1,16 @@
+%h1 新しい投稿
+%p ここにアナタの気分を呟こう呟こう!!!!!!!!!
+= form_for :tweets, url: tweets_path do |f|
+  = f.hidden_field :user_id, :value => current_user.id.to_i
+  %p
+    = f.label :title, "つぶやきのタイトル"
+    %br/
+    = f.text_field :title
+  %p
+    = f.label :text, "つぶやきの本文"
+    %br/
+    = f.text_area :text, cols: 60, rows: 8
+  %p
+    = f.submit "そーーーーーーーしん!!!!!!!!!!!!!!!"
+%p
+  = link_to "戻るで", :back
