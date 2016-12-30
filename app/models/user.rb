@@ -8,4 +8,7 @@ class User < ApplicationRecord
 
   has_many :tweets
 
+  def follow_user(user)
+    Relation.find_by(follow_id: user.id).present?
+  end
 end

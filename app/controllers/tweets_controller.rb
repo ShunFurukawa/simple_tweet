@@ -9,6 +9,7 @@ class TweetsController < ApplicationController
 
   def show
     @tweet = Tweet.find(params[:id])
+    @like = Like.find_by(tweet_id: @tweet.id)
   end
 
   def create
@@ -16,7 +17,7 @@ class TweetsController < ApplicationController
     redirect_to @tweet
   end
 
-  def create
+  def edit
     @tweet = Tweet.find(params[:id])
   end
 

@@ -4,23 +4,11 @@
 - if current_user.id.to_s == params[:id]
   %h3 あなたのマイページでする
 - else
-  - if Relation.find_by(followed_id: params[:id])
-    = form_for @relation, url:relation_path(current_user), :method => :delete do |f|
-      = f.hidden_field :follow_id, :value => current_user.id
-      = f.hidden_field :followed_id, :value => @user.id
-      = f.submit "フォローを外す"
-  - else
-    = form_for @relation, url:relation_index_path do |f|
-      = f.hidden_field :follow_id, :value => current_user.id
-      = f.hidden_field :followed_id, :value => @user.id
-      = f.submit "フォローする"
+  %div{id: "follow-btn"}
+    = render partial: 'relation/follow', locals: { user: current_user, other_user: @user }
 %p
   = link_to "つぶやく!!!!!!", new_tweet_path
 %p
   = link_to "つぶやき一覧はこっち!", tweets_path
-%p
-  = link_to "フォロー 一覧", relation_path(current_user.id)
-%p
-  = link_to "フォロワー 一覧", '/relationed/:id'
 %p
   = link_to "Simple Tweet ユーザー 一覧", users_path

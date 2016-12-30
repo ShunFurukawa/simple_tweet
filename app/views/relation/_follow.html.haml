@@ -1,0 +1,6 @@
+- if user.follow_user(current_user)
+  = button_to user_relation_path(user.id, other_user.id),method: :delete, remote: true do
+    フォローをやめる。
+- else
+  = button_to user_relation_index_path(user.id, other_user.id), method: :post,remote: true do
+    フォローする。
