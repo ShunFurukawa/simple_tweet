@@ -1,4 +1,6 @@
 class RelationController < ApplicationController
+  before_action :set_follow, only: [:create]
+  before_action :set_unfollow, only: [:destroy]
 
   def show
     #フォロー 一覧表示
@@ -20,16 +22,21 @@ class RelationController < ApplicationController
 
   def create
     #フォローするアクション
-    @follow = params[:relation][:follow_id]
-    @followed = params[:relation][:followed_id]
-    @relation = Relation.create(follow_id: @follow, followed_id: @followed)
-    redirect_to relation_path(current_user), notice: 'フォローしました!!!'
+    @follow = Relation.create(follow_id: current_user.id, followed_id: @user.id)
   end
 
   def destroy
     #フォロー外すアクション
-    @user = Relation.find_by(follow_id: current_user.id).destroy
-    redirect_to relation_path(current_user)
+    @unfollow = Relation.find_by(follow_id: current_user.id).destroy
+  end
+
+  private
+  def set_follow
+    @user = User.find(params[:format])
+  end
+
+  def set_unfollow
+    @user = User.find(params[:id])
   end
 
 end

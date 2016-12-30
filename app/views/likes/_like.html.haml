@@ -1,0 +1,12 @@
+- if tweet.like_user(current_user.id)
+  = button_to tweet_like_path(tweet.id, like.id), method: :delete, remote: true do
+    お気に入りをやめる。
+  %p
+    お気に入り回数 →
+    = @tweet.likes_count
+- else
+  = button_to tweet_likes_path(tweet.id), method: :post, remote: true do
+    お気に入りをする。
+  %p
+    お気に入りの数 →
+    = @tweet.likes_count

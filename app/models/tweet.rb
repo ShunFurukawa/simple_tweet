@@ -1,7 +1,9 @@
 class Tweet < ApplicationRecord
+  belongs_to                  :user
+  has_many                    :likes, dependent: :destroy
+  validates_presence_of       :title, :text
 
-  belongs_to :user
-
-  validates_presence_of :title, :text
-
+  def like_user(user_id)
+    likes.find_by(user_id: user_id)
+  end
 end
